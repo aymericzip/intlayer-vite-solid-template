@@ -8,6 +8,7 @@ import {
 } from "solid-intlayer";
 import { createSignal, For, type ParentComponent } from "solid-js";
 import "./App.css";
+
 import viteLogo from "/vite.svg";
 import solidLogo from "./assets/solid.svg";
 
@@ -15,8 +16,9 @@ const LocaleSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { locale, setLocale, availableLocales } = useLocale({
-    onLocaleChange: (loc) => {
-      const pathWithLocale = getLocalizedUrl(location.pathname, loc);
+    onLocaleChange: (locale) => {
+      const pathWithLocale = getLocalizedUrl(location.pathname, locale);
+
       navigate(pathWithLocale);
     },
   });
@@ -24,7 +26,7 @@ const LocaleSwitcher = () => {
   return (
     <select
       value={locale()}
-      onChange={(e) => setLocale(e.currentTarget.value as any)}
+      onChange={(e) => setLocale(e.currentTarget.value)}
       class="locale-switcher"
     >
       <For each={availableLocales}>
@@ -39,13 +41,15 @@ const LocaleSwitcher = () => {
 };
 
 const Layout: ParentComponent = (props) => {
+  const { locale } = useLocale();
+
   return (
     <>
       <nav>
-        <A href="/" end activeClass="active">
+        <A href={getLocalizedUrl("/", locale())} end activeClass="active">
           Home
         </A>
-        <A href="/tests" activeClass="active">
+        <A href={getLocalizedUrl("/tests", locale())} activeClass="active">
           Tests
         </A>
         <LocaleSwitcher />
@@ -79,7 +83,7 @@ const Home = () => {
       </div>
       <h1>{content().viteAndSolid}</h1>
       <div class="card">
-        <button onClick={() => setCount((c) => c + 1)}>
+        <button type="button" onClick={() => setCount((c) => c + 1)}>
           {content().countIs({ count: count() })}
         </button>
         <p>{content().editSrcAppTsx}</p>
@@ -105,9 +109,9 @@ const Tests = () => {
       </div>
       <div class="test-item">
         <h3>Enumeration Test</h3>
-        <p>0: {content().enumerationTest({ count: 0 })}</p>
-        <p>1: {content().enumerationTest({ count: 1 })}</p>
-        <p>10: {content().enumerationTest({ count: 10 })}</p>
+        <p>0: {content().enumerationTest({ count: 0 })(0)}</p>
+        <p>1: {content().enumerationTest({ count: 1 })(1)}</p>
+        <p>10: {content().enumerationTest({ count: 10 })(10)}</p>
       </div>
     </div>
   );
@@ -117,8 +121,8 @@ export const App = () => (
   <IntlayerProvider>
     {localeMap(({ locale, urlPrefix }) => (
       <Route
-        path={urlPrefix || "/"}
-        component={(props: any) => (
+        path={urlPrefix}
+        component={(props) => (
           <IntlayerProvider locale={locale}>
             <MarkdownProvider>
               <Layout>{props.children}</Layout>
