@@ -1,11 +1,7 @@
 import { A, Route, useLocation, useNavigate } from "@solidjs/router";
 import { getLocalizedUrl, localeMap } from "intlayer";
-import {
-  IntlayerProvider,
-  MarkdownProvider,
-  useIntlayer,
-  useLocale,
-} from "solid-intlayer";
+import { IntlayerProvider, useIntlayer, useLocale } from "solid-intlayer";
+import { MarkdownProvider } from "solid-intlayer/markdown";
 import { createSignal, For, type ParentComponent } from "solid-js";
 import "./App.css";
 
