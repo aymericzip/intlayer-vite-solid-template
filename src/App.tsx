@@ -63,28 +63,24 @@ const Home = () => {
     <>
       <div>
         <a href="https://vite.dev" target="_blank" rel="noopener">
-          <img
-            src={viteLogo}
-            class="logo"
-            alt={content().viteLogoLabel.value}
-          />
+          <img src={viteLogo} class="logo" alt={content.viteLogoLabel.value} />
         </a>
         <a href="https://solidjs.com" target="_blank" rel="noopener">
           <img
             src={solidLogo}
             class="logo solid"
-            alt={content().solidLogoLabel.value}
+            alt={content.solidLogoLabel.value}
           />
         </a>
       </div>
-      <h1>{content().viteAndSolid}</h1>
+      <h1>{content.viteAndSolid}</h1>
       <div class="card">
         <button type="button" onClick={() => setCount((c) => c + 1)}>
-          {content().countIs({ count: count() })}
+          {content.countIs({ count: count() })}
         </button>
-        <p>{content().editSrcAppTsx}</p>
+        <p>{content.editSrcAppTsx}</p>
       </div>
-      <p class="read-the-docs">{content().readTheDocs}</p>
+      <p class="read-the-docs">{content.readTheDocs}</p>
     </>
   );
 };
@@ -94,20 +90,20 @@ const Tests = () => {
 
   return (
     <div class="tests">
-      <h2>{content().title}</h2>
+      <h2>{content.title}</h2>
       <div class="test-item">
         <h3>HTML Test</h3>
-        <p>{content().htmlTest}</p>
+        <p>{content.htmlTest}</p>
       </div>
       <div class="test-item">
         <h3>Markdown Test</h3>
-        <div class="markdown-body">{content().markdownTest}</div>
+        <div class="markdown-body">{content.markdownTest}</div>
       </div>
       <div class="test-item">
         <h3>Enumeration Test</h3>
-        <p>0: {content().enumerationTest({ count: 0 })(0)}</p>
-        <p>1: {content().enumerationTest({ count: 1 })(1)}</p>
-        <p>10: {content().enumerationTest({ count: 10 })(10)}</p>
+        <p>0: {content.enumerationTest({ count: 0 })(0)}</p>
+        <p>1: {content.enumerationTest({ count: 1 })(1)}</p>
+        <p>10: {content.enumerationTest({ count: 10 })(10)}</p>
       </div>
     </div>
   );

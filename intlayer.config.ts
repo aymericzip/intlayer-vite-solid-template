@@ -7,7 +7,7 @@ const config: IntlayerConfig = {
     locales: [Locales.ENGLISH, Locales.FRENCH, Locales.SPANISH],
   },
   dictionary: {
-    importMode: "static",
+    importMode: "dynamic",
   },
   editor: {
     enabled: false,
