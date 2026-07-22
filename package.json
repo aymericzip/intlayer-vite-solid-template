@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.16.1",
-    "intlayer": "canary",
-    "solid-intlayer": "canary",
+    "intlayer": "latest",
+    "solid-intlayer": "latest",
     "solid-js": "1.9.14"
   },
   "devDependencies": {
@@ -20,8 +20,8 @@
     "solid-refresh": "0.7.8",
     "typescript": "5.9.3",
     "vite": "8.1.3",
-    "intlayer-editor": "canary",
-    "vite-intlayer": "canary",
+    "intlayer-editor": "latest",
+    "vite-intlayer": "latest",
     "vite-plugin-solid": "2.11.12"
   }
 }
